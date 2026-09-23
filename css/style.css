@@ -1,0 +1,22 @@
+.body1{
+    background-color: #3d56c4;
+}
+.contlogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+.formlogin{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.contlogin2{
+    display: flex;
+    flex-direction: column;
+}
+.input1{
+    color: white;
+}
