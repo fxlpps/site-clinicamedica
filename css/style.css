@@ -1,12 +1,27 @@
 .body1{
     background-color: #3d56c4;
 }
+@font-face {
+    font-family: "Coolvetica";
+    src: url(../fonts/Coolvetica\ Rg.otf) format("opentype");
+}
+@font-face {
+    font-family: "Roboto1";
+    src: url(../fonts/Roboto-Medium.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Roboto2";
+    src: url(../fonts/Roboto-Medium.ttf) format("truetype");
+}
 .contlogin{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 5%;
+    width: 350px;
+    margin: 5% auto 0;
+    padding: 30px;
+    background-color: #2c3e8f;
+    border-radius: 15px;
 }
 .formlogin{
     display: flex;
@@ -19,4 +34,23 @@
 }
 .input1{
     color: white;
+}
+.titulo1{
+    color: white;
+    font-family: 'Coolvetica';
+    letter-spacing: 3px;
+}
+.label1{
+    color:white;
+    font-family: 'Roboto1';
+}
+.input1{
+    background-color: #4e5fa8;
+    font-family: "Roboto", sans-serif;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
 }
