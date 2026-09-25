@@ -3,29 +3,36 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .body1{
     background-color: #3d56c4;
 }
+
 body{
     font-family: Arial, sans-serif;
     background-color: #f5f7fb;
     color: #3d56c4;
 }
+
 #provisorio1{
     background-color: white;
 }
-@font-face {
+
+@font-face{
     font-family: "Coolvetica";
-    src: url(../fonts/Coolvetica\ Rg.otf) format("opentype");
+    src: url("../fonts/Coolvetica Rg.otf") format("opentype");
 }
-@font-face {
+
+@font-face{
     font-family: "Roboto1";
-    src: url(../fonts/Roboto-Medium.ttf) format("truetype");
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
 }
-@font-face {
+
+@font-face{
     font-family: "Roboto2";
-    src: url(../fonts/Roboto-Medium.ttf) format("truetype");
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
 }
+
 .contlogin{
     display: flex;
     flex-direction: column;
@@ -37,30 +44,22 @@ body{
     border-radius: 15px;
     gap: 20px;
 }
+
 .formlogin{
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
 }
+
 .contlogin2{
     display: flex;
     flex-direction: column;
+    gap: 3px;
 }
+
 .input1{
     color: white;
-}
-.titulo1{
-    color: white;
-    font-family: 'Coolvetica';
-    letter-spacing: 3px;
-}
-.label1{
-    color:white;
-    font-family: 'Coolvetica';
-    font-size: 20px;
-}
-.input1{
     background-color: #4e5fa8;
     font-family: "Roboto1", sans-serif;
     width: 200px;
@@ -70,6 +69,19 @@ body{
     border: none;
     border-radius: 3px;
 }
+
+.titulo1{
+    color: white;
+    font-family: "Coolvetica";
+    letter-spacing: 3px;
+}
+
+.label1{
+    color: white;
+    font-family: "Coolvetica";
+    font-size: 20px;
+}
+
 .button1{
     background-color: #4e5fa8;
     font-family: "Coolvetica", sans-serif;
@@ -80,42 +92,49 @@ body{
     height: 30px;
     font-size: 20px;
 }
-.contlogin2{
-    gap: 3px;
-}
+
 .header{
     height: 70px;
-    background-color: #ffffff;
+    background-color: #3d56c4;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
-    border-bottom: 3px solid #3d56c4;
+    border-bottom: 3px solid #2c3e8f;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
 }
+
 .logo{
     font-size: 21px;
     font-weight: bold;
+    color: white;
 }
+
 .headerright{
     display: flex;
     align-items: center;
     gap: 25px;
+    color: white;
 }
+
 .notif{
     font-size: 20px;
     cursor: pointer;
+    color: white;
 }
+
 .user{
     display: flex;
     align-items: center;
     gap: 10px;
     font-weight: 500;
+    color: white;
 }
+
 .usericon{
     width: 38px;
     height: 38px;
@@ -123,18 +142,21 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 }
+
 .layout{
     display: flex;
 }
+
 .sidebar{
     width: 240px;
     height: calc(100vh - 70px);
-    background-color: #ffffff;
+    background-color: #3d56c4;
     position: fixed;
     top: 70px;
     left: 0;
-    border-right: 3px solid #3d56c4;
+    border-right: 3px solid #d4dcff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -146,47 +168,54 @@ body{
     flex-direction: column;
     gap: 5px;
 }
+
 .menuitem{
     display: flex;
     gap: 12px;
     padding: 12px 15px;
     border-radius: 8px;
     text-decoration: none;
-    color: #3d56c4;
+    color: white;
     font-family: "Coolvetica";
     font-size: 27px;
     transition: 0.2s;
 }
+
 .menuitem:hover{
-    background-color: #dee1e4;
+    background-color: #2c3e8f;
 }
+
 .menuitemativo{
     display: flex;
     gap: 12px;
     padding: 12px 15px;
     border-radius: 8px;
     text-decoration: none;
-    color: #2c3e8f;
+    color: white;
     font-family: "Coolvetica";
     font-size: 27px;
     transition: 0.2s;
+    background-color: #2c3e8f;
 }
+
 .sidebar-bottom{
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
+
 .logout{
-    color: #3d56c4;
+    color: white;
 }
+
 .logout:hover{
-    background-color: #fee2e2;
-    color: #dc2626;
+    background-color: #dc2626;
+    color: white;
 }
+
 .main{
     margin-left: 240px;
     padding: 100px 30px 30px;
-
     width: calc(100% - 240px);
     min-height: 100vh;
 }
