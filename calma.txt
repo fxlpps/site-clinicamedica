@@ -1,0 +1,390 @@
+
+2. O HTML base
+No dashboard.html, por exemplo:
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            🏥 Clínica
+        </div>
+
+        <div class="header-right">
+
+            <span class="notification">
+                🔔
+            </span>
+
+            <div class="user">
+                <span>João Silva</span>
+                <span class="user-icon">👤</span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- LAYOUT -->
+    <div class="layout">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <nav>
+
+                <a href="dashboard.html" class="menu-item active">
+                    🏠
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="pacientes.html" class="menu-item">
+                    👥
+                    <span>Pacientes</span>
+                </a>
+
+                <a href="medicos.html" class="menu-item">
+                    🩺
+                    <span>Médicos</span>
+                </a>
+
+                <a href="consultas.html" class="menu-item">
+                    📅
+                    <span>Consultas</span>
+                </a>
+
+                <a href="exames.html" class="menu-item">
+                    🧪
+                    <span>Exames</span>
+                </a>
+
+                <a href="receitas.html" class="menu-item">
+                    💊
+                    <span>Receitas</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="#" class="menu-item">
+                    ⚙️
+                    <span>Configurações</span>
+                </a>
+
+                <a href="login.html" class="menu-item logout">
+                    🚪
+                    <span>Sair</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO -->
+        <main class="main">
+
+            <h1>Dashboard</h1>
+
+            <p>Bem-vindo ao sistema.</p>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+
+Agora vem a parte que realmente cria o visual.
+
+3. CSS do Header
+No style.css:
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fb;
+    color: #1f2937;
+}
+
+
+/* HEADER */
+
+.header {
+    height: 70px;
+    background-color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+}
+
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.notification {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-weight: 500;
+}
+
+
+.user-icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background-color: #e5edff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+Isso cria:
+
+┌─────────────────────────────────────────────────────────────┐
+│ 🏥 Clínica                                🔔 João Silva 👤 │
+└─────────────────────────────────────────────────────────────┘
+
+4. Agora o menu lateral
+Ainda no style.css:
+
+/* LAYOUT */
+
+.layout {
+    display: flex;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 240px;
+    height: calc(100vh - 70px);
+
+    background-color: #ffffff;
+
+    position: fixed;
+
+    top: 70px;
+    left: 0;
+
+    border-right: 1px solid #e5e7eb;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 20px 12px;
+}
+
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.menu-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    color: #4b5563;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+
+.menu-item:hover {
+    background-color: #f1f5f9;
+    color: #2563eb;
+}
+
+
+.menu-item.active {
+    background-color: #e8f0ff;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.logout {
+    color: #dc2626;
+}
+
+
+.logout:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+Agora você terá:
+
+┌───────────────────┐
+│ 🏠 Dashboard      │
+│ 👥 Pacientes      │
+│ 🩺 Médicos        │
+│ 📅 Consultas      │
+│ 🧪 Exames         │
+│ 💊 Receitas       │
+│                   │
+│                   │
+│ ⚙️ Configurações  │
+│ 🚪 Sair           │
+└───────────────────┘
+
+5. E o conteúdo?
+Como o header e o sidebar são fixed, precisamos dar espaço para eles.
+
+Adicione:
+
+.main {
+    margin-left: 240px;
+    padding: 100px 30px 30px;
+
+    width: calc(100% - 240px);
+    min-height: 100vh;
+}
+
+Agora:
+
+HEADER
+──────────────────────────────────────────────────────
+       │
+MENU   │       CONTEÚDO
+       │
+       │       Dashboard
+       │
+       │       Bem-vindo!
+       │
+       │
+
+6. O detalhe importante para o seu sistema
+Depois nós vamos parar de escrever isso manualmente:
+
+<a href="pacientes.html">Pacientes</a>
+<a href="consultas.html">Consultas</a>
+<a href="exames.html">Exames</a>
+
+para cada perfil.
+
+Porque você quer algo como:
+
+ADMIN
+├── Dashboard
+├── Pacientes
+├── Médicos
+├── Funcionários
+├── Convênios
+├── Consultas
+├── Exames
+├── Medicamentos
+└── Configurações
+
+MÉDICO
+├── Dashboard
+├── Minhas consultas
+├── Meus pacientes
+├── Exames
+└── Receitas
+
+PACIENTE
+├── Dashboard
+├── Minhas consultas
+├── Meus exames
+└── Minhas receitas
+
+Então o mesmo sidebar será montado de acordo com:
+
+usuario.perfil
+
+E aí começa a ficar bem legal, porque você terá uma estrutura:
+
+                 LOGIN
+                   ↓
+              usuario
+                   ↓
+                perfil
+                   ↓
+        ┌──────────┼──────────┐
+        ↓          ↓          ↓
+      ADMIN      MÉDICO    PACIENTE
+        ↓          ↓          ↓
+      menu       menu       menu
+        ↓          ↓          ↓
+    dashboard  dashboard  dashboard
+
+Eu começaria exatamente por esse layout. Depois colocamos os cards do dashboard e, em seguida, fazemos o menu ser carregado automaticamente conforme o perfil do seu banco.

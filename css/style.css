@@ -1,6 +1,9 @@
 .body1{
     background-color: #3d56c4;
 }
+#provisorio1{
+    background-color: white;
+}
 @font-face {
     font-family: "Coolvetica";
     src: url(../fonts/Coolvetica\ Rg.otf) format("opentype");
@@ -18,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     width: 350px;
-    margin: 5% auto 0;
+    margin: 10% auto 0;
     padding: 30px;
     background-color: #2c3e8f;
     border-radius: 15px;
@@ -26,7 +29,8 @@
 .formlogin{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    align-items: center;
 }
 .contlogin2{
     display: flex;
@@ -42,15 +46,29 @@
 }
 .label1{
     color:white;
-    font-family: 'Roboto1';
+    font-family: 'Coolvetica';
+    font-size: 20px;
 }
 .input1{
     background-color: #4e5fa8;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto1", sans-serif;
     width: 200px;
     height: 30px;
     font-size: 15px;
     outline: none;
     border: none;
     border-radius: 3px;
+}
+.button1{
+    background-color: #4e5fa8;
+    font-family: "Coolvetica", sans-serif;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+}
+.contlogin2{
+    gap: 3px;
 }
