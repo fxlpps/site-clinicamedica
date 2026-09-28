@@ -9,7 +9,7 @@
 <body class="dashbody">
     <header class="header">
         <div class="logo">
-             <h1>Provisório</h1>
+             <img src="../img/logo2simbolo.png" class="logodashboard"></img>
         </div>
         <div class="headerright">
             <span class="notif">

@@ -108,10 +108,9 @@ body{
     z-index: 1000;
 }
 
-.logo{
-    font-size: 21px;
-    font-weight: bold;
-    color: white;
+.logodashboard{
+    width: 50px;
+    margin-top: 7px;
 }
 
 .headerright{
