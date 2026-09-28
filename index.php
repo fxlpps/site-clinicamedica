@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body1">
+<div class="backgroundlogo">
+        <img src="img/logo2sf.png">
+    </div>
     <div class="contlogin">
         <div>
         <h1 class="titulo1">Login</h1>

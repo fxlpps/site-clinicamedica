@@ -13,12 +13,12 @@
         </div>
         <div class="headerright">
             <span class="notif">
-                Sino
+                <img src="../img/sinobranco.png" class="icondashboard"></img>
             </span>
 
             <div class="user">
-                <span>Maiko</span>
-                <span class="usericon">Silhueta</span>
+                <span class="usericon"><img src="../img/userbranco.png" class="icondashboard" id="usericon"></span>    
+                <span class="usertxt">Maiko</span>
             </div>
         </div>
     </header>
