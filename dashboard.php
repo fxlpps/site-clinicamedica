@@ -1,5 +1,5 @@
 <?php
-require 'includes/verifica_sessao.php';
+// require 'includes/verifica_sessao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
