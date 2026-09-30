@@ -1,65 +1,24 @@
+<?php
+require 'includes/verifica_sessao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dashbody">
-    <header class="header">
-        <div class="logo">
-             <img src="../img/logo2simbolo.png" class="logodashboard"></img>
-        </div>
-        <div class="headerright">
-            <span class="notif">
-                <img src="../img/sinobranco.png" class="icondashboard"></img>
-            </span>
-
-            <div class="user">
-                <span class="usericon"><img src="../img/userbranco.png" class="icondashboard" id="usericon"></span>    
-                <span class="usertxt">Maiko</span>
-            </div>
-        </div>
-    </header>
+    <?php include 'includes/header.php'; ?>
 
     <div class="layout">
-        <aside class="sidebar">
-            <nav>
-                <a href="dashboard.html" class="menuitemativo">
-                    <span>Início</span>
-                </a>
-                <a href="pacientes.html" class="menuitem">
-                    <span>Pacientes</span>
-                </a>
-                <a href="medicos.html" class="menuitem">
-                    <span>Médicos</span>
-                </a>
-                <a href="consultas.html" class="menuitem">
-                    <span>Consultas</span>
-                </a>
-                <a href="exames.html" class="menuitem">
-                    <span>Exames</span>
-                </a>
-                <a href="receitas.html" class="menuitem">
-                    <span>Receitas</span>
-                </a>
-            </nav>
-            <div class="sidebar-bottom">
-                <a href="#" class="menuitem">
-                    <span>Configurações</span>
-                </a>
-                <a href="login.html" class="menuitem logout">
-                    <span>Sair</span>
-                </a>
-            </div>
-        </aside>
+        <?php include 'includes/sidebar.php'; ?>
 
         <main class="main">
             <h1>Dashboard</h1>
-            <h2>Bem vindo, Maiko!</h2>
+            <h2>Bem vindo, <?php echo htmlspecialchars($_SESSION['usuario_login'] ?? 'Visitante'); ?>!</h2>
         </main>
-
     </div>
 </body>
 </html>

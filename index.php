@@ -27,7 +27,7 @@
                 <input type="password" id="usuario" name="usuario" class="input1">
                 </div>
                 <button type="submit" class="button1">Entrar</button>
-                <div id="provisorio1"><a href="html/dashboard.php">Botão Provisório</a></div>
+                <div id="provisorio1"><a href="dashboard.php">Botão Provisório</a></div>
             </form>
         </div>
     </div>
