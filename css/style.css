@@ -193,6 +193,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     padding: 20px 12px;
+    overflow-y: auto;
 }
 
 .sidebar nav{
@@ -250,4 +251,20 @@ body{
     padding: 100px 30px 30px;
     width: calc(100% - 240px);
     min-height: 100vh;
+}
+.sidebar::-webkit-scrollbar{
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover{
+    background-color: rgba(255, 255, 255, 0.5);
 }
