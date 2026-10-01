@@ -6,7 +6,7 @@ $base = '/site-clinicamedica';
 $erro = '';
 $sucesso = '';
 
-// Detecta se o form foi enviado
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['nome'] ?? '');
     $cnpj     = trim($_POST['cnpj'] ?? '');

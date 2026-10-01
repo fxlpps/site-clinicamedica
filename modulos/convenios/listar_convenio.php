@@ -4,7 +4,7 @@ require '../../config/conexao.php';
 
 $base = '/site-clinicamedica';
 
-// Busca todos os convênios
+//Todos os convenios
 $sql = "SELECT * FROM convenio ORDER BY ativo DESC, nome ASC";
 $convenios = $pdo->query($sql)->fetchAll();
 ?>
@@ -28,8 +28,12 @@ $convenios = $pdo->query($sql)->fetchAll();
                 <a href="cadastrar_convenio.php" class="btn-novo">+ Novo Convênio</a>
             </div>
             <?php if (isset($_GET['sucesso'])): ?>
-                <div class="alerta alerta-sucesso">Convênio cadastrado com sucesso!</div>
-            <?php endif; ?>
+                <div class="alerta alerta-sucesso">
+                    <?php echo $_GET['sucesso'] === 'editado'
+                    ? 'Convênio atualizado com sucesso!'
+                    : 'Convênio cadastrado com sucesso!'; ?>
+                </div>
+<?php endif; ?>
 
             <?php if (count($convenios) === 0): ?>
                 <div class="vazio">
