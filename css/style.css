@@ -194,6 +194,7 @@ body{
     justify-content: space-between;
     padding: 20px 12px;
     overflow-y: auto;
+    gap: 50px;
 }
 
 .sidebar nav{
