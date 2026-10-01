@@ -28,11 +28,32 @@ $convenios = $pdo->query($sql)->fetchAll();
                 <a href="cadastrar_convenio.php" class="btn-novo">+ Novo Convênio</a>
             </div>
             <?php if (isset($_GET['sucesso'])): ?>
-                <div class="alerta alerta-sucesso">
-                    <?php echo $_GET['sucesso'] === 'editado'
-                    ? 'Convênio atualizado com sucesso!'
-                    : 'Convênio cadastrado com sucesso!'; ?>
-                </div>
+    <div class="alerta alerta-sucesso">
+        <?php
+        switch ($_GET['sucesso']) {
+            case 'editado':  echo 'Convênio atualizado com sucesso!'; break;
+            case 'excluido': echo 'Convênio excluído com sucesso!';   break;
+            default:         echo 'Convênio cadastrado com sucesso!';
+        }
+        ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_GET['erro'])): ?>
+    <div class="alerta alerta-erro">
+        <?php
+        switch ($_GET['erro']) {
+            case 'em_uso':
+                echo 'Não é possível excluir: existem pacientes vinculados a este convênio.';
+                break;
+            case 'nao_encontrado':
+                echo 'Convênio não encontrado.';
+                break;
+            default:
+                echo 'Erro ao excluir. Tente novamente.';
+        }
+        ?>
+    </div>
 <?php endif; ?>
 
             <?php if (count($convenios) === 0): ?>
