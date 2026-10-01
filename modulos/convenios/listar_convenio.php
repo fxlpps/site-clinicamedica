@@ -27,6 +27,9 @@ $convenios = $pdo->query($sql)->fetchAll();
                 <h1>Convênios</h1>
                 <a href="cadastrar_convenio.php" class="btn-novo">+ Novo Convênio</a>
             </div>
+            <?php if (isset($_GET['sucesso'])): ?>
+                <div class="alerta alerta-sucesso">Convênio cadastrado com sucesso!</div>
+            <?php endif; ?>
 
             <?php if (count($convenios) === 0): ?>
                 <div class="vazio">
