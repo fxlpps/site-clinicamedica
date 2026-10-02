@@ -375,6 +375,11 @@ body{
     transition: 0.2s;
 }
 
+.iconeacao{
+    width: 16px;
+    height: 16px;
+}
+
 .btn-acao:hover{
     background-color: #d4dcff;
 }
