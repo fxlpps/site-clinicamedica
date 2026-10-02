@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `id_convenio` INT UNSIGNED DEFAULT NULL,
     `nome` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
     `cpf` CHAR(14) NOT NULL,
     `rg` VARCHAR(20) NOT NULL,
     `data_nascimento` DATE NOT NULL,
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `paciente` (
 CREATE TABLE IF NOT EXISTS `funcionario` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
     `cpf` CHAR(14) NOT NULL,
     `rg` VARCHAR(20) NOT NULL,
     `data_nascimento` DATE NOT NULL,
@@ -82,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 CREATE TABLE IF NOT EXISTS `medico` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
     `crm` VARCHAR(20) NOT NULL,
     `especialidade` VARCHAR(50) DEFAULT NULL COMMENT 'Null: Médico Generalista',
     `cpf` CHAR(14) NOT NULL,
@@ -254,4 +257,3 @@ CREATE TABLE IF NOT EXISTS `receita_medicamento` (
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
-cclinica_medica
