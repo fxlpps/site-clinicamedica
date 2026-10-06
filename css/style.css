@@ -454,6 +454,22 @@ body{
     accent-color: #3d56c4;
     cursor: pointer;
 }
+.campo select{
+    padding: 10px 12px;
+    border: 2px solid #d4dcff;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: 0.2s;
+    background-color: white;
+    cursor: pointer;
+}
+
+.campo select:focus{
+    border-color: #3d56c4;
+    box-shadow: 0 0 0 3px rgba(61, 86, 196, 0.15);
+}
 .acoes-form{
     display: flex;
     justify-content: flex-end;

@@ -86,11 +86,11 @@ $convenios = $pdo->query($sql)->fetchAll();
                                     <?php endif; ?>
                                 </td>
                                 <td class="acoes">
-                                    <a href="editar_convenio.php?id=<?php echo $c['id']; ?>" class="btn-acao" title="Editar"><img src="../../img/editar icon.png" class="iconeacao"></a>
+                                    <a href="editar_convenio.php?id=<?php echo $c['id']; ?>" class="btn-acao" title="Editar"><img src="../../img/editar_icon.png" class="iconeacao"></a>
                                     <a href="excluir_convenio.php?id=<?php echo $c['id']; ?>"
                                        class="btn-acao btn-excluir"
                                        title="Excluir"
-                                       onclick="return confirm('Tem certeza que deseja excluir este convênio?');"><img src="../../img/excluir icon.png" class="iconeacao"></a>
+                                       onclick="return confirm('Tem certeza que deseja excluir este convênio?');"><img src="../../img/excluir_icon.png" class="iconeacao"></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
