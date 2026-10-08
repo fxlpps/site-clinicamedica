@@ -19,7 +19,6 @@ try {
         header('Location: listar_convenio.php?erro=nao_encontrado');
     }
 } catch (PDOException $e) {
-    //Código 23000 é: violação de FK (convênio em uso)
     if ($e->getCode() === '23000') {
         header('Location: listar_convenio.php?erro=em_uso');
     } else {
