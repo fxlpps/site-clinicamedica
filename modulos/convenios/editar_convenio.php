@@ -74,7 +74,7 @@ if (!$convenio) {
         <main class="main">
             <div class="pagina-topo">
                 <h1>Editar Convênio</h1>
-                <a href="listar_convenio.php" class="btn-voltar">← Voltar</a>
+                <a href="listar_convenio.php" class="btn-voltar">Voltar</a>
             </div>
 
             <?php if ($erro): ?>

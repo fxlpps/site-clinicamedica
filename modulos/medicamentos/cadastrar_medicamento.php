@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <main class="main">
             <div class="pagina-topo">
                 <h1>Novo Medicamento</h1>
-                <a href="listar_medicamento.php" class="btn-voltar">← Voltar</a>
+                <a href="listar_medicamento.php" class="btn-voltar">Voltar</a>
             </div>
 
             <?php if ($erro): ?>

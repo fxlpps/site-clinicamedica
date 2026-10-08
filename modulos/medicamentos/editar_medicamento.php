@@ -63,7 +63,7 @@ if (!$medicamento) {
         <main class="main">
             <div class="pagina-topo">
                 <h1>Editar Medicamento</h1>
-                <a href="listar_medicamento.php" class="btn-voltar">← Voltar</a>
+                <a href="listar_medicamento.php" class="btn-voltar">Voltar</a>
             </div>
 
             <?php if ($erro): ?>

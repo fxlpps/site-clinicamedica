@@ -19,7 +19,6 @@ try {
         header('Location: listar_medicamento.php?erro=nao_encontrado');
     }
 } catch (PDOException $e) {
-    // Código 23000 = violação de FK (medicamento em uso em receita)
     if ($e->getCode() === '23000') {
         header('Location: listar_medicamento.php?erro=em_uso');
     } else {
