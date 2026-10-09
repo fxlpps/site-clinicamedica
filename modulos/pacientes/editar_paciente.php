@@ -157,7 +157,7 @@ if (!$paciente) {
                     <div class="campo">
                         <label for="estado">Estado *</label>
                         <select id="estado" name="estado" required>
-                            <option value="">— Selecione —</option>
+                            <option value="">Selecione</option>
                             <?php foreach ($ufs as $uf): ?>
                                 <option value="<?php echo $uf; ?>"
                                     <?php echo ($paciente['estado'] === $uf) ? 'selected' : ''; ?>>

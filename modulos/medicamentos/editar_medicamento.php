@@ -80,7 +80,7 @@ if (!$medicamento) {
                 <div class="campo">
                     <label for="forma">Forma *</label>
                     <select id="forma" name="forma" required>
-                        <option value="">— Selecione —</option>
+                        <option value="">Selecione</option>
                         <?php foreach ($formas as $f): ?>
                             <option value="<?php echo htmlspecialchars($f); ?>"
                                 <?php echo ($medicamento['forma'] === $f) ? 'selected' : ''; ?>>
