@@ -8,6 +8,7 @@ require 'includes/verifica_sessao.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="img/logo1simbolo.png">
 </head>
 <body class="dashbody">
     <?php include 'includes/header.php'; ?>

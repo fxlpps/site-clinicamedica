@@ -53,6 +53,7 @@ if (!$medicamento) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Medicamento</title>
     <link rel="stylesheet" href="<?php echo $base; ?>/css/style.css">
+    <link rel="icon" type="image/png" href="../../img/logo1simbolo.png">
 </head>
 <body class="dashbody">
     <?php include '../../includes/header.php'; ?>
