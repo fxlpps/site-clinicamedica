@@ -529,3 +529,29 @@ body{
     margin-bottom: 20px;
     max-width: 100%;
 }
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+    height: 42px;
+    padding: 10px 12px;
+    border: 2px solid #d4dcff;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: 0.2s;
+    background-color: white;
+    color: #333;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus {
+    border-color: #3d56c4;
+    box-shadow: 0 0 0 3px rgba(61, 86, 196, 0.15);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
