@@ -262,4 +262,4 @@ VALUES
 (1, 'João Silva', 'joao.silva@email.com', '111.111.111-11', '1111111', '1985-03-15', '(11) 91111-1111', '01234-567', 'SP', 'São Paulo', 'Centro', 'Rua A', '100', '0123456789', 'Hipertenso', 'ATIVO'),
 (1, 'Maria Santos', 'maria.santos@email.com', '222.222.222-22', '2222222', '1990-07-22', '(11) 92222-2222', '02345-678', 'SP', 'São Paulo', 'Vila Mariana', 'Rua B', '200', '9876543210', NULL, 'ATIVO'),
 (2, 'Pedro Oliveira', 'pedro.oliveira@email.com', '333.333.333-33', '3333333', '1978-11-08', '(11) 93333-3333', '03456-789', 'SP', 'São Paulo', 'Ipiranga', 'Rua C', '300', '1122334455', 'Diabético', 'ATIVO'),
-(NULL, 'Ana Costa', 'ana.costa@email.com', '444.444.444-44', '4444444', '2000-01-30', '(11) 94444-4444', '04567-890', 'SP', 'São Paulo', 'Butantã', 'Rua D', '400', NULL, NULL, 'ATIVO');
+(NULL, 'Ana Costa', 'ana.costa@email.com', '444.444.444-44', '4444444', '2000-01-30', '(11) 94444-4444', '04567-890', 'SP', 'São Paulo', 'Butantã', 'Rua D', '400', NULL, NULL, 'ATIVO')

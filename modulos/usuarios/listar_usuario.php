@@ -58,6 +58,8 @@ $usuarios = $pdo->query($sql)->fetchAll();
                             break;
                         case 'nao_encontrado':
                             echo 'Usuário não encontrado.';
+                        case 'proprio_usuario':
+                            echo 'Você não pode excluir o próprio usuário logado.';
                             break;
                         default:
                             echo 'Erro ao excluir. Tente novamente.';
@@ -113,12 +115,16 @@ $usuarios = $pdo->query($sql)->fetchAll();
                                     <a href="editar_usuario.php?id=<?php echo $u['id']; ?>" class="btn-acao" title="Editar">
                                         <img src="../../img/editar_icon.png" class="iconeacao" alt="Editar">
                                     </a>
-                                    <a href="excluir_usuario.php?id=<?php echo $u['id']; ?>"
-                                       class="btn-acao btn-excluir"
-                                       title="Excluir"
-                                       onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
-                                        <img src="../../img/excluir_icon.png" class="iconeacao" alt="Excluir">
-                                    </a>
+                                    <?php if ($u['id'] != $_SESSION['usuario_id']): ?>
+                                        <a href="excluir_usuario.php?id=<?php echo $u['id']; ?>"
+                                        class="btn-acao btn-excluir"
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                            <img src="../../img/excluir_icon.png" class="iconeacao" alt="Excluir">
+                                        </a>
+                                    <?php else: ?>
+                                        <span style="font-size: 12px; color: #999; margin-left: 5px;" title="Você não pode excluir a si mesmo">(Você)</span>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
