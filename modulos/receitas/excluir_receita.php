@@ -5,7 +5,7 @@ require '../../config/conexao.php';
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($id <= 0) {
-    header('Location: listar_receitas.php');
+    header('Location: listar_receita.php');
     exit;
 }
 
@@ -14,15 +14,15 @@ try {
     $stmt->execute([$id]);
 
     if ($stmt->rowCount() > 0) {
-        header('Location: listar_receitas.php?sucesso=excluido');
+        header('Location: listar_receita.php?sucesso=excluido');
     } else {
-        header('Location: listar_receitas.php?erro=nao_encontrado');
+        header('Location: listar_receita.php?erro=nao_encontrado');
     }
 } catch (PDOException $e) {
     if ($e->getCode() === '23000') {
-        header('Location: listar_receitas.php?erro=em_uso');
+        header('Location: listar_receita.php?erro=em_uso');
     } else {
-        header('Location: listar_receitas.php?erro=desconhecido');
+        header('Location: listar_receita.php?erro=desconhecido');
     }
 }
 exit;

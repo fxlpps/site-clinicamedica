@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <main class="main">
             <div class="pagina-topo">
                 <h1>Nova Receita</h1>
-                <a href="listar_receitas.php" class="btn-voltar">Voltar</a>
+                <a href="listar_receita.php" class="btn-voltar">Voltar</a>
             </div>
 
             <?php if ($erro): ?>
@@ -207,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
 
                 <div class="acoes-form">
-                    <a href="listar_receitas.php" class="btn-cancelar">Cancelar</a>
+                    <a href="listar_receita.php" class="btn-cancelar">Cancelar</a>
                     <button type="submit" class="btn-salvar">Emitir Receita</button>
                 </div>
             </form>

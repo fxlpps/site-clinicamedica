@@ -7,7 +7,7 @@ $base = '/site-clinicamedica';
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($id <= 0) {
-    header('Location: listar_receitas.php');
+    header('Location: listar_receita.php');
     exit;
 }
 
@@ -25,7 +25,7 @@ $stmt->execute([$id]);
 $receita = $stmt->fetch();
 
 if (!$receita) {
-    header('Location: listar_receitas.php');
+    header('Location: listar_receita.php');
     exit;
 }
 
@@ -103,7 +103,7 @@ $itens = $stmt_itens->fetchAll();
                 <h1>Visualizar Receita</h1>
                 <div>
                     <button onclick="window.print()" class="btn-salvar btn-imprimir" style="margin-right: 10px;">Imprimir</button>
-                    <a href="listar_receitas.php" class="btn-voltar">Voltar</a>
+                    <a href="listar_receita.php" class="btn-voltar">Voltar</a>
                 </div>
             </div>
 
