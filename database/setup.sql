@@ -1,240 +1,3 @@
--- =====================================================================
--- BANCO DE DADOS - CLÍNICA NAKAMURA
--- 
--- rode este arquivo no HeidiSQL (Arquivo -> Carregar SQL -> F9)
--- Login padrão: 
---
--- User: admin
--- Senha: 123456
--- =====================================================================
-DROP DATABASE IF EXISTS clinica_medica;
-CREATE DATABASE clinica_medica CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE clinica_medica;
-
--- Tabelas
-CREATE TABLE convenio (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    cnpj CHAR(18) DEFAULT NULL,
-    telefone VARCHAR(20) DEFAULT NULL,
-    ativo TINYINT(1) NOT NULL DEFAULT 1,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY uk_convenio_nome (nome)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE paciente (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_convenio INT UNSIGNED DEFAULT NULL,
-    nome VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    cpf CHAR(14) NOT NULL,
-    rg VARCHAR(20) NOT NULL,
-    data_nascimento DATE NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
-    cep CHAR(9) NOT NULL,
-    estado VARCHAR(50) NOT NULL,
-    cidade VARCHAR(50) NOT NULL,
-    bairro VARCHAR(50) NOT NULL,
-    rua VARCHAR(200) NOT NULL,
-    numero VARCHAR(15) NOT NULL,
-    numero_convenio VARCHAR(30) DEFAULT NULL,
-    condicoes_especiais TEXT,
-    status ENUM('ATIVO', 'INATIVO') NOT NULL DEFAULT 'ATIVO',
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY cpf (cpf),
-    UNIQUE KEY rg (rg),
-    KEY fk_paciente_convenio (id_convenio),
-    CONSTRAINT fk_paciente_convenio FOREIGN KEY (id_convenio) REFERENCES convenio (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE funcionario (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    cpf CHAR(14) NOT NULL,
-    rg VARCHAR(20) NOT NULL,
-    data_nascimento DATE NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
-    cep CHAR(9) NOT NULL,
-    estado VARCHAR(50) NOT NULL,
-    cidade VARCHAR(50) NOT NULL,
-    bairro VARCHAR(50) NOT NULL,
-    rua VARCHAR(200) NOT NULL,
-    numero VARCHAR(15) NOT NULL,
-    salario DECIMAL(10,2) NOT NULL,
-    cargo VARCHAR(50) NOT NULL,
-    status ENUM('ATIVO', 'INATIVO') NOT NULL DEFAULT 'ATIVO',
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY cpf (cpf),
-    UNIQUE KEY rg (rg)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE medico (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    crm VARCHAR(20) NOT NULL,
-    especialidade VARCHAR(50) DEFAULT NULL,
-    cpf CHAR(14) NOT NULL,
-    rg VARCHAR(20) NOT NULL,
-    data_nascimento DATE NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
-    cep CHAR(9) NOT NULL,
-    estado VARCHAR(50) NOT NULL,
-    cidade VARCHAR(50) NOT NULL,
-    bairro VARCHAR(50) NOT NULL,
-    rua VARCHAR(200) NOT NULL,
-    numero VARCHAR(15) NOT NULL,
-    salario DECIMAL(10,2) NOT NULL,
-    status ENUM('ATIVO', 'INATIVO') NOT NULL DEFAULT 'ATIVO',
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY CRMS (crm),
-    UNIQUE KEY cpf (cpf),
-    UNIQUE KEY rg (rg)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE usuario (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_funcionario INT UNSIGNED DEFAULT NULL,
-    id_medico INT UNSIGNED DEFAULT NULL,
-    id_paciente INT UNSIGNED DEFAULT NULL,
-    login VARCHAR(50) NOT NULL,
-    senha_hash VARCHAR(255) NOT NULL,
-    perfil ENUM('Paciente', 'Recepcionista', 'Administrador', 'Financeiro', 'Medico') NOT NULL,
-    ativo TINYINT(1) NOT NULL DEFAULT 1,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY uk_usuario_login (login),
-    KEY fk_usuario_funcionario (id_funcionario),
-    KEY fk_usuario_medico (id_medico),
-    KEY fk_usuario_paciente (id_paciente),
-    CONSTRAINT fk_usuario_funcionario FOREIGN KEY (id_funcionario) REFERENCES funcionario (id),
-    CONSTRAINT fk_usuario_medico FOREIGN KEY (id_medico) REFERENCES medico (id),
-    CONSTRAINT fk_usuario_paciente FOREIGN KEY (id_paciente) REFERENCES paciente (id),
-    CONSTRAINT chk_usuario_vinculo_unico CHECK (
-        (id_funcionario IS NOT NULL AND id_medico IS NULL AND id_paciente IS NULL) OR
-        (id_funcionario IS NULL AND id_medico IS NOT NULL AND id_paciente IS NULL) OR
-        (id_funcionario IS NULL AND id_medico IS NULL AND id_paciente IS NOT NULL) OR
-        (id_funcionario IS NULL AND id_medico IS NULL AND id_paciente IS NULL)
-    )
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE medicamento (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    forma VARCHAR(50) NOT NULL,
-    ativo TINYINT(1) NOT NULL DEFAULT 1,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE tipo_exame (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    ativo TINYINT(1) NOT NULL DEFAULT 1,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY nome (nome)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE procedimento (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    descricao TEXT NOT NULL,
-    valor DECIMAL(10,2) NOT NULL,
-    duracao TIME DEFAULT NULL,
-    ativo TINYINT(1) NOT NULL DEFAULT 1,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE consulta (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_medico INT UNSIGNED NOT NULL,
-    id_paciente INT UNSIGNED NOT NULL,
-    valor DECIMAL(10,2) DEFAULT NULL,
-    pagamento_status ENUM('PENDENTE', 'PAGO', 'PARCIAL', 'CANCELADO') NOT NULL DEFAULT 'PENDENTE',
-    pagamento_forma ENUM('DINHEIRO', 'PIX', 'CARTAO', 'CONVENIO') DEFAULT NULL,
-    data_consulta DATE NOT NULL,
-    horario TIME NOT NULL,
-    prioridade ENUM('Urgente', 'Agendada', 'Preferencial', 'Espontânea') NOT NULL,
-    diagnostico TEXT,
-    status ENUM('Agendada', 'Realizada', 'Cancelada') NOT NULL,
-    observacoes TEXT,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE KEY Consulta_Medico (id_medico, data_consulta, horario),
-    KEY FK_consulta_paciente (id_paciente),
-    CONSTRAINT FK_consulta_medico FOREIGN KEY (id_medico) REFERENCES medico (id),
-    CONSTRAINT FK_consulta_paciente FOREIGN KEY (id_paciente) REFERENCES paciente (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE agendamento_procedimento (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_paciente INT UNSIGNED NOT NULL,
-    id_procedimento INT UNSIGNED NOT NULL,
-    id_medico INT UNSIGNED DEFAULT NULL,
-    data_procedimento DATE NOT NULL,
-    horario TIME NOT NULL,
-    valor DECIMAL(10,2) NOT NULL,
-    status ENUM('AGENDADO', 'REALIZADO', 'CANCELADO') NOT NULL,
-    observacoes TEXT,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    KEY fk_ap_paciente (id_paciente),
-    KEY fk_ap_procedimento (id_procedimento),
-    KEY fk_ap_medico (id_medico),
-    CONSTRAINT fk_ap_paciente FOREIGN KEY (id_paciente) REFERENCES paciente (id),
-    CONSTRAINT fk_ap_procedimento FOREIGN KEY (id_procedimento) REFERENCES procedimento (id),
-    CONSTRAINT fk_ap_medico FOREIGN KEY (id_medico) REFERENCES medico (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE exame (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_consulta INT UNSIGNED NOT NULL,
-    id_tipo INT UNSIGNED NOT NULL,
-    data_realizacao DATE NOT NULL,
-    hora_realizacao TIME NOT NULL,
-    resultado TEXT,
-    status ENUM('Agendada', 'Realizada', 'Cancelada') NOT NULL,
-    observacoes TEXT,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    KEY FK_exame_consulta (id_consulta),
-    KEY FK_exame_tipoexame (id_tipo),
-    CONSTRAINT FK_exame_consulta FOREIGN KEY (id_consulta) REFERENCES consulta (id),
-    CONSTRAINT FK_exame_tipoexame FOREIGN KEY (id_tipo) REFERENCES tipo_exame (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE receita (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_consulta INT UNSIGNED NOT NULL,
-    data_receita TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    KEY FK_receita_consulta (id_consulta),
-    CONSTRAINT FK_receita_consulta FOREIGN KEY (id_consulta) REFERENCES consulta (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE receita_medicamento (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_receita INT UNSIGNED NOT NULL,
-    id_medicamento INT UNSIGNED NOT NULL,
-    dosagem VARCHAR(50) NOT NULL,
-    posologia VARCHAR(150) NOT NULL,
-    quantidade INT NOT NULL,
-    unidade VARCHAR(50) NOT NULL,
-    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    KEY FK_rm_receita (id_receita),
-    KEY FK_rm_medicamento (id_medicamento),
-    CONSTRAINT FK_rm_medicamento FOREIGN KEY (id_medicamento) REFERENCES medicamento (id),
-    CONSTRAINT FK_rm_receita FOREIGN KEY (id_receita) REFERENCES receita (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Dados
 INSERT INTO usuario (login, senha_hash, perfil, ativo) VALUES
 ('admin', '$2y$10$agXhNUeV6U.rz4Vtg8CDvuNeDUlGqcirLzpm8cIGNZ.ChbXnYEHsG', 'Administrador', 1);
@@ -244,12 +7,17 @@ INSERT INTO convenio (nome, cnpj, telefone, ativo) VALUES
 ('Bradesco Saúde', '98.765.432/0001-10', '(11) 3333-5555', 1);
 
 INSERT INTO medicamento (nome, forma, ativo) VALUES
-('Medicamento A', 'Comprimido', 1),
-('Medicamento B', 'Xarope', 1);
+('Dipirona', 'Comprimido', 1),
+('Amoxicilina', 'Cápsula', 1),
+('Loratadina', 'Xarope', 1),
+('Ibuprofeno', 'Comprimido', 1),
+('Omeprazol', 'Cápsula', 1);
 
 INSERT INTO tipo_exame (nome, ativo) VALUES
 ('Hemograma Completo', 1),
-('Raio-X de Tórax', 1);
+('Raio-X de Tórax', 1),
+('Ultrassonografia Abdominal', 1),
+('Eletrocardiograma (ECG)', 1);
 
 INSERT INTO paciente (id_convenio, nome, email, cpf, rg, data_nascimento, telefone, cep, estado, cidade, bairro, rua, numero, numero_convenio, condicoes_especiais, status) VALUES
 (1, 'João Silva', 'joao.silva@email.com', '111.111.111-11', '1111111', '1985-03-15', '(11) 91111-1111', '01234-567', 'SP', 'São Paulo', 'Centro', 'Rua A', '100', '0123456789', 'Hipertenso', 'ATIVO'),
@@ -276,17 +44,48 @@ INSERT INTO usuario (id_medico, login, senha_hash, perfil, ativo) VALUES
 (1, 'carlos.silva', '$2y$10$agXhNUeV6U.rz4Vtg8CDvuNeDUlGqcirLzpm8cIGNZ.ChbXnYEHsG', 'Medico', 1);
 
 INSERT INTO usuario (id_funcionario, login, senha_hash, perfil, ativo) VALUES
-(1, 'mariana.costa', '$2y$10$agXhNUeV6U.rz4Vtg8CDvuNeDUlGqcirLzpm8cIGNZ.ChbXnYEHsG', 'Recepcionista', 1);
+(1, 'mariana.costa', '$2y$10$agXhNUeV6U.rz4Vtg8CDvuNeDUlGqcirLzpm8cIGNZ.ChbXnYEHsG', 'Recepcionista', 1),
+(2, 'carlos.eduardo', '$2y$10$agXhNUeV6U.rz4Vtg8CDvuNeDUlGqcirLzpm8cIGNZ.ChbXnYEHsG', 'Financeiro', 1);
 
 INSERT INTO procedimento (nome, descricao, valor, duracao, ativo) VALUES
 ('Limpeza de pele', 'Procedimento estético para remoção de impurezas', 150.00, '00:30:00', 1),
 ('Aplicação de Botox', 'Aplicação de toxina botulínica para rugas', 800.00, '00:30:00', 1),
 ('Drenagem Linfática', 'Massagem para redução de inchaço', 120.00, '01:00:00', 1),
-('Curativo Simples', 'Limpeza e troca de curativo de feridas', 50.00, '00:15:00', 1);
+('Curativo Simples', 'Limpeza e troca de curativo de feridas', 50.00, '00:15:00', 1),
+('Microagulhamento', 'Estímulo de colágeno com agulhas', 350.00, '01:00:00', 1),
+('Peeling de Diamante', 'Esfoliação profunda da pele', 200.00, '00:45:00', 1);
 
 INSERT INTO consulta (id_medico, id_paciente, data_consulta, horario, prioridade, status, valor, pagamento_status) VALUES
 (1, 1, CURDATE(), '09:00:00', 'Agendada', 'Agendada', 200.00, 'PENDENTE'),
 (2, 3, CURDATE(), '10:30:00', 'Urgente', 'Agendada', 250.00, 'PENDENTE'),
 (1, 2, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '14:00:00', 'Agendada', 'Agendada', 200.00, 'PENDENTE'),
 (3, 4, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '15:30:00', 'Preferencial', 'Agendada', 220.00, 'PENDENTE'),
-(1, 5, DATE_SUB(CURDATE(), INTERVAL 1 DAY), '10:00:00', 'Agendada', 'Realizada', 200.00, 'PAGO');
+(1, 5, DATE_SUB(CURDATE(), INTERVAL 1 DAY), '10:00:00', 'Agendada', 'Realizada', 200.00, 'PAGO'),
+(2, 6, DATE_SUB(CURDATE(), INTERVAL 2 DAY), '11:00:00', 'Agendada', 'Realizada', 250.00, 'PAGO'),
+(3, 7, DATE_SUB(CURDATE(), INTERVAL 3 DAY), '14:30:00', 'Agendada', 'Realizada', 220.00, 'CONVENIO'),
+(1, 9, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '08:30:00', 'Preferencial', 'Agendada', 200.00, 'PENDENTE');
+
+INSERT INTO exame (id_consulta, id_tipo, data_realizacao, hora_realizacao, resultado, status, observacoes) VALUES
+(5, 1, DATE_SUB(CURDATE(), INTERVAL 1 DAY), '10:30:00', 'Hemograma dentro dos padrões de normalidade.', 'Realizada', 'Paciente em jejum.'),
+(6, 2, DATE_SUB(CURDATE(), INTERVAL 2 DAY), '11:30:00', 'Pulmões limpos, sem sinais de infecção.', 'Realizada', NULL),
+(1, 3, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '15:00:00', NULL, 'Agendada', 'Preparo: 6 horas de jejum.'),
+(2, 4, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '09:30:00', NULL, 'Agendada', NULL);
+
+INSERT INTO receita (id_consulta) VALUES
+(5),
+(6),
+(7);
+
+INSERT INTO receita_medicamento (id_receita, id_medicamento, dosagem, posologia, quantidade, unidade) VALUES
+(1, 1, '500mg', 'Tomar 1 comprimido a cada 6 horas em caso de dor.', 20, 'comprimidos'),
+(1, 5, '20mg', 'Tomar 1 cápsula em jejum, 30 minutos antes do café.', 30, 'cápsulas'),
+(2, 2, '875mg', 'Tomar 1 cápsula a cada 12 horas por 7 dias.', 14, 'cápsulas'),
+(2, 4, '600mg', 'Tomar 1 comprimido a cada 8 horas em caso de febre.', 15, 'comprimidos'),
+(3, 3, '10mg', 'Tomar 10ml uma vez ao dia à noite.', 1, 'frasco');
+
+INSERT INTO agendamento_procedimento (id_paciente, id_procedimento, id_medico, data_procedimento, horario, valor, status, observacoes) VALUES
+(2, 1, 2, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '09:00:00', 150.00, 'AGENDADO', 'Limpeza de pele profunda.'),
+(5, 2, 2, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '14:00:00', 800.00, 'AGENDADO', 'Aplicação de toxina botulínica na testa.'),
+(1, 3, 1, DATE_SUB(CURDATE(), INTERVAL 5 DAY), '10:00:00', 120.00, 'REALIZADO', 'Paciente relatou melhora no inchaço.'),
+(3, 4, 3, DATE_SUB(CURDATE(), INTERVAL 10 DAY), '15:30:00', 50.00, 'REALIZADO', 'Curativo pós-operatório.'),
+(8, 5, 2, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '11:00:00', 350.00, 'AGENDADO', 'Sessão de microagulhamento facial.');
