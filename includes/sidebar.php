@@ -71,7 +71,7 @@ function podeVer(array $perfis_permitidos, string $perfil_atual): bool {
         <?php endif; ?>
 
         <?php if (podeVer(['Administrador', 'Medico', 'Paciente'], $perfil)): ?>
-            <a href="<?php echo $base; ?>/modulos/receitas/listar_receitas.php" class="menuitem">
+            <a href="<?php echo $base; ?>/modulos/receitas/listar_receita.php" class="menuitem">
                 <span>Receitas</span>
             </a>
         <?php endif; ?>
