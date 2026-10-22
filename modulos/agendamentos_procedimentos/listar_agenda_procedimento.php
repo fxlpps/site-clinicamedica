@@ -113,7 +113,7 @@ $historico = $stmt_historico->fetchAll();
 
             <h3 class="form-secao">Histórico</h3>
             <?php if (count($historico) === 0): ?>
-                <p style="color: #666;">Nenhum procedimento no histórico.</p>
+                <p style="color: #666;">Nenhum procedimento no histórico</p>
             <?php else: ?>
                 <table class="tabela">
                     <thead>
