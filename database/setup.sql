@@ -1,7 +1,6 @@
 -- =====================================================================
 -- BANCO DE DADOS - CLÍNICA NAKAMURA
 -- 
--- rode este arquivo no HeidiSQL (Arquivo -> Carregar SQL -> F9)
 -- Login padrão: 
 --
 -- User: admin
