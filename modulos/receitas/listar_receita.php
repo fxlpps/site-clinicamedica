@@ -78,12 +78,12 @@ $receitas = $pdo->query($sql)->fetchAll();
                                 <td><?php echo $r['total_itens']; ?> item(ns)</td>
                                 <td class="acoes">
                                     <a href="visualizar_receita.php?id=<?php echo $r['id']; ?>" class="btn-acao" title="Visualizar">
-                                        <img src="../../img/visualizar_icon.png" class="iconeacao" alt="Visualizar" onerror="this.style.display='none'; this.parentNode.innerHTML+='👁';">
+                                        <img src="../../img/visualizar_icon.png" class="iconeacao" alt="Visualizar">
                                     </a>
                                     <a href="excluir_receita.php?id=<?php echo $r['id']; ?>"
-                                       class="btn-acao btn-excluir"
-                                       title="Excluir"
-                                       onclick="return confirm('Tem certeza que deseja excluir esta receita?');">
+                                    class="btn-acao btn-excluir"
+                                    title="Excluir"
+                                    onclick="return confirm('Tem certeza que deseja excluir esta receita?');">
                                         <img src="../../img/excluir_icon.png" class="iconeacao" alt="Excluir">
                                     </a>
                                 </td>
