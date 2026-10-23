@@ -43,5 +43,16 @@ $erro = $_GET['erro'] ?? '';
             </form>
         </div>
     </div>
+    <div class="dev-info" id="devInfo">
+    <div class="dev-info-header">
+        <span>Acesso para Avaliação</span>
+        <button class="dev-info-close" onclick="document.getElementById('devInfo').style.display='none';">&times;</button>
+    </div>
+    <div class="dev-info-content">
+        <p><strong>Usuário:</strong> admin</p>
+        <p><strong>Senha:</strong> 123456</p>
+        <p style="font-size: 11px; margin-top: 5px; opacity: 0.7;">*Exibido apenas para fins de teste.</p>
+    </div>
+</div>
 </body>
 </html>
