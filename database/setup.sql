@@ -234,6 +234,18 @@ CREATE TABLE receita_medicamento (
     CONSTRAINT FK_rm_receita FOREIGN KEY (id_receita) REFERENCES receita (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE reset_senha (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id_usuario INT UNSIGNED NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    expira_em DATETIME NOT NULL,
+    usado TINYINT(1) DEFAULT 0,
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY fk_reset_usuario (id_usuario),
+    CONSTRAINT fk_reset_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Dados
 INSERT INTO usuario (login, senha_hash, perfil, ativo) VALUES
 ('admin', '$2y$10$agXhNUeV6U.rz4Vtg8CDvuNeDUlGqcirLzpm8cIGNZ.ChbXnYEHsG', 'Administrador', 1);
